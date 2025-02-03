@@ -9,3 +9,9 @@ yarn
 ```bash
 npx prisma generate
 ```
+
+Run
+
+```bash
+yarn dev
+```
