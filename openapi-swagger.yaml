@@ -39,6 +39,7 @@ paths:
           description: Bad Request
         '500':
           description: Internal Server Error
+
     get:
       summary: List all customers
       responses:
@@ -53,6 +54,32 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Customer'
+        '500':
+          description: Internal Server Error
+
+    patch:
+      summary: Update customer
+      parameters:
+        - name: customerId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: CustomerId is required
         '500':
           description: Internal Server Error
 
@@ -79,6 +106,7 @@ paths:
           description: CustomerId is required
         '500':
           description: Internal Server Error
+
     delete:
       summary: Delete customer by ID
       parameters:
@@ -97,33 +125,6 @@ paths:
                 properties:
                   message:
                     type: string
-        '400':
-          description: CustomerId is required
-        '500':
-          description: Internal Server Error
-
-  /customers:
-    patch:
-      summary: Update customer
-      parameters:
-        - name: customerId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Customer'
-      responses:
-        '200':
-          description: Customer updated successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Customer'
         '400':
           description: CustomerId is required
         '500':
