@@ -10,6 +10,11 @@ import {
 export class CustomerApi implements ICustomerApi {
 
   async create(name: string, email: string) {
+
+    const emailExists = await this.checkEmail(email);
+    
+    if(emailExists) throw new Error ("Email already used")
+
     const customer = await prismaClient.customer.create({
       data: {
         name,
@@ -29,6 +34,15 @@ export class CustomerApi implements ICustomerApi {
     return prismaClient.customer.findFirst({
       where: { id },
     });
+  }
+
+  private async checkEmail(email:string){
+    const emailExists = await prismaClient.customer.findFirst({
+      where: {
+        email
+      }
+    });
+    return !!emailExists
   }
 
   async getCustomerById(customerId: string) {
