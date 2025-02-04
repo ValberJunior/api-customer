@@ -119,7 +119,7 @@ spec:
               description: Internal Server Error
 
       /customers/update:
-        put:
+        patch:
           summary: Update customer
           requestBody:
             required: true
