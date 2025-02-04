@@ -28,14 +28,16 @@ spec:
           requestBody:
             required: true
             content:
-              application/json:
+              multipart/form-data:
                 schema:
                   type: object
                   properties:
                     name:
                       type: string
+                      description: "Name of the customer"
                     email:
                       type: string
+                      description: "Email of the customer"
                   required:
                     - name
                     - email
@@ -55,115 +57,3 @@ spec:
               description: Bad Request
             '500':
               description: Internal Server Error
-
-        get:
-          summary: List all customers
-          responses:
-            '200':
-              description: List of customers
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      customers:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Customer'
-            '500':
-              description: Internal Server Error
-
-        patch:
-          summary: Update customer
-          parameters:
-            - name: customerId
-              in: query
-              required: true
-              schema:
-                type: string
-          requestBody:
-            required: true
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Customer'
-          responses:
-            '200':
-              description: Customer updated successfully
-              content:
-                application/json:
-                  schema:
-                    $ref: '#/components/schemas/Customer'
-            '400':
-              description: CustomerId is required
-            '500':
-              description: Internal Server Error
-
-      /customers/{customerId}:
-        get:
-          summary: Get customer by ID
-          parameters:
-            - name: customerId
-              in: path
-              required: true
-              schema:
-                type: string
-          responses:
-            '200':
-              description: Customer data
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      customer:
-                        $ref: '#/components/schemas/Customer'
-            '400':
-              description: CustomerId is required
-            '500':
-              description: Internal Server Error
-
-        delete:
-          summary: Delete customer by ID
-          parameters:
-            - name: customerId
-              in: path
-              required: true
-              schema:
-                type: string
-          responses:
-            '200':
-              description: Customer deleted successfully
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      message:
-                        type: string
-            '400':
-              description: CustomerId is required
-            '500':
-              description: Internal Server Error
-
-    components:
-      schemas:
-        Customer:
-          type: object
-          properties:
-            id:
-              type: string
-            name:
-              type: string
-            email:
-              type: string
-            status:
-              type: boolean
-            created_at:
-              type: string
-              format: date-time
-              nullable: true
-            updated_at:
-              type: string
-              format: date-time
-              nullable: true

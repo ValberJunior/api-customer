@@ -8,6 +8,7 @@ import {
   serializerCompiler,
   validatorCompiler
 } from "fastify-type-provider-zod";
+import formBody from '@fastify/formbody';
 
 const APP_PORT = process.env.APP_PORT || "3333";
 const APP_HOST = process.env.APP_HOST || "localhost"
@@ -31,6 +32,7 @@ app.register(swagger, {
   app.register(swaggerUI, {
     routePrefix: "/docs",
   });
+  app.register(formBody);
 
   app.register(cors);
   app.register(routes);
