@@ -68,9 +68,9 @@ The **Customer Management API** is a RESTful service built with Fastify and Pris
 - **GET** `/customers/{customerId}`
   - Get details of a specific customer by ID.
 
-- **PATCH** `/customers`
-  - Update customer information.
-  - **Body:** `{ "id": "123", "name": "Jane Doe", "email": "jane@example.com" }`
+- **PATCH** `/customers/{customerId}`
+  - Update customer information by ID.
+  - **Body:** `{ "name": "Jane Doe", "email": "jane@example.com" }`
 
 - **DELETE** `/customer/{customerId}`
   - Delete a customer by ID.

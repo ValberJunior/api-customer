@@ -3,8 +3,8 @@ import { CustomerApi } from "../api/customerApi";
 import { 
   CreateCustomerRequest, 
   UpdateCustomerRequest, 
-  GetCustomerByIdRequest, 
-  DeleteCustomerRequest 
+  GetCustomerByIdRequest,
+  CustomerSchema, 
 } from "../schema/customerSchema";
 
 export class CustomerController {
@@ -45,7 +45,7 @@ export class CustomerController {
 
   deleteCustomer = async (request: FastifyRequest, reply: FastifyReply) => {
     try {
-      const { customerId } = DeleteCustomerRequest.parse(request.params);
+      const { customerId } = GetCustomerByIdRequest.parse(request.params);
       const response = await this.customerApi.deleteCustomer(customerId);
       return reply.send(response);
     } catch (error) {
@@ -55,8 +55,9 @@ export class CustomerController {
 
   updateCustomer = async (request: FastifyRequest, reply: FastifyReply) => {
     try {
-      const customer = UpdateCustomerRequest.parse(request.body);
-      const response = await this.customerApi.updateCustomer(customer);
+      const { customerId } = GetCustomerByIdRequest.parse(request.params);
+      const body = UpdateCustomerRequest.parse(request.body);
+      const response = await this.customerApi.updateCustomer(customerId,body);
       return reply.send(response);
     } catch (error) {
       return reply.status(500).send({ message: `Error updating customer: ${error}` });

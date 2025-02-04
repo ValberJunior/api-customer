@@ -15,5 +15,5 @@ export interface ICustomerApi {
   listAllCustomers(): Promise<CustomersListType>;
   getCustomerById(customerId: string): Promise<CustomerType>;
   deleteCustomer(customerId: string): Promise<DeleteCustomerResponseType>;
-  updateCustomer(customer: Partial<Customer>): Promise<CustomerType>;
+  updateCustomer(customerId:string,body: Partial<Customer>): Promise<CustomerType>;
 }

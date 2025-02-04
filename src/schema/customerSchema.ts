@@ -18,20 +18,13 @@ export const CreateCustomerRequest = z.object({
 });
 
 export const UpdateCustomerRequest = z.object({
-  id: z.string(),
   name: z.string().optional(),
   email: z.string().email().optional(),
-  status: z.boolean().optional(),
-  created_at: z.string().optional(),
-  updated_at: z.string().optional()
+  status: z.boolean().optional()
 });
 
 export const GetCustomerByIdRequest = z.object({
   customerId: z.string()
-});
-
-export const DeleteCustomerRequest = z.object({
- customerId: z.string()
 });
 
 export const DeleteCustomerResponse = z.object({

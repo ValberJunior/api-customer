@@ -118,9 +118,15 @@ spec:
             '500':
               description: Internal Server Error
 
-      /customers/update:
+      /customers:
         patch:
           summary: Update customer
+          parameters:
+            - name: customerId
+              in: path
+              required: true
+              schema:
+                type: string
           requestBody:
             required: true
             content:

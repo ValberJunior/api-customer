@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
 import { CustomerController } from "../controllers/customerController";
 import { HealthCheckResponse } from "../schema/healthSchema";
-import { CreateCustomerRequest, CustomerSchema, CustomersListResponse, DeleteCustomerRequest, DeleteCustomerResponse, ErrorResponse, GetCustomerByIdRequest, UpdateCustomerRequest } from "../schema/customerSchema";
+import { CreateCustomerRequest, CustomerSchema, CustomersListResponse, DeleteCustomerResponse, ErrorResponse, GetCustomerByIdRequest, UpdateCustomerRequest } from "../schema/customerSchema";
 
 export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions)
 {
@@ -67,7 +67,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
    */
   fastify.delete("/customers/:customerId", {
     schema: {
-      params: DeleteCustomerRequest,
+      params: GetCustomerByIdRequest,
       response:{
         200: DeleteCustomerResponse,
         404: ErrorResponse
@@ -78,8 +78,9 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
  /**
   * Update Customer
   */
-  fastify.patch("/customers", {
+  fastify.patch("/customers/:customerId", {
     schema: {
+      params: GetCustomerByIdRequest,
       body: UpdateCustomerRequest,
       response: {
         200: CustomerSchema,
