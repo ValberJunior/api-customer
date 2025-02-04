@@ -20,7 +20,7 @@ spec:
       description: API for managing customers
       version: 1.0.0
     servers:
-      - url: http://localhost:3000
+      - url: https://customer.cluster-k8s-playrole.vkpr.platform.vee.codes
     paths:
       /customers:
         post:
@@ -57,3 +57,4 @@ spec:
               description: Bad Request
             '500':
               description: Internal Server Error
+
