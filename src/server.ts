@@ -3,11 +3,19 @@ import cors from '@fastify/cors';
 import { routes } from './services/routes';
 import swagger from "@fastify/swagger";
 import swaggerUI from "@fastify/swagger-ui";
+import {
+  jsonSchemaTransform,
+  serializerCompiler,
+  validatorCompiler
+} from "fastify-type-provider-zod";
 
 const APP_PORT = process.env.APP_PORT || "3333";
 const APP_HOST = process.env.APP_HOST || "localhost"
 
 const app = Fastify({logger:true});
+
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
 
 app.register(swagger, {
     openapi: {
@@ -15,27 +23,17 @@ app.register(swagger, {
         title: "Customer API",
         description: "Customer Manager API",
         version: "1.0.0"
-      },
-      servers: [{ url: `${APP_HOST}:${APP_PORT}` }]
-    }
+      }
+    },
+    transform: jsonSchemaTransform
   });
   
   app.register(swaggerUI, {
-    routePrefix: "/docs"
+    routePrefix: "/docs",
   });
-
-// const start = async () => {
 
   app.register(cors);
   app.register(routes);
-
-//     try{
-//         await app.listen({port: APP_PORT as number, host: APP_HOST})
-//     }
-//     catch(error){
-//         process.exit(1)
-//     }
-// }
 
 app.listen({ host: APP_HOST, port: parseInt(APP_PORT, 10) }, (err, address) => {
   if (err) {
@@ -44,5 +42,3 @@ app.listen({ host: APP_HOST, port: parseInt(APP_PORT, 10) }, (err, address) => {
   }
   console.log(`Server listening at ${address}`)
 })
-
-// start();
