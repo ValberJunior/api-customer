@@ -60,7 +60,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
    *       400:
    *         description: Name and email are required
    */
-  fastify.post("/customer", customerController.createCustomer);
+  fastify.post("/customers", customerController.createCustomer);
 
   /**
    * @swagger
@@ -94,7 +94,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
    *       404:
    *         description: Customer not found
    */
-  fastify.get("/customer/:customerId", customerController.getCustomerById);
+  fastify.get("/customers/:customerId", customerController.getCustomerById);
 
   /**
    * @swagger
@@ -115,7 +115,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
    *       404:
    *         description: Customer not found
    */
-  fastify.delete("/customer/:customerId", customerController.deleteCustomer);
+  fastify.delete("/customers/:customerId", customerController.deleteCustomer);
 
   /**
    * @swagger
@@ -144,5 +144,5 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
    *       400:
    *         description: Customer ID is required
    */
-  fastify.patch("/customer", customerController.updateCustomer);
+  fastify.patch("/customers", customerController.updateCustomer);
 }
