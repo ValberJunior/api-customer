@@ -4,8 +4,8 @@ import { routes } from './services/routes';
 import swagger from "@fastify/swagger";
 import swaggerUI from "@fastify/swagger-ui";
 
-const APP_PORT = process.env.APP_PORT || 3333;
-const APP_HOST = process.env.APP_HOST || "http://localhost"
+const APP_PORT = process.env.APP_PORT || "3333";
+const APP_HOST = process.env.APP_HOST || "localhost"
 
 const app = Fastify({logger:true});
 
@@ -13,7 +13,7 @@ app.register(swagger, {
     openapi: {
       info: {
         title: "Customer API",
-        description: "API para gerenciamento de clientes",
+        description: "Customer Manager API",
         version: "1.0.0"
       },
       servers: [{ url: `${APP_HOST}:${APP_PORT}` }]
@@ -24,17 +24,25 @@ app.register(swagger, {
     routePrefix: "/docs"
   });
 
-const start = async () => {
+// const start = async () => {
 
-    await app.register(cors);
-    await app.register(routes);
+  app.register(cors);
+  app.register(routes);
 
-    try{
-        await app.listen({port: APP_PORT as number})
-    }
-    catch(error){
-        process.exit(1)
-    }
-}
+//     try{
+//         await app.listen({port: APP_PORT as number, host: APP_HOST})
+//     }
+//     catch(error){
+//         process.exit(1)
+//     }
+// }
 
-start();
+app.listen({ host: APP_HOST, port: parseInt(APP_PORT, 10) }, (err, address) => {
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+  console.log(`Server listening at ${address}`)
+})
+
+// start();
