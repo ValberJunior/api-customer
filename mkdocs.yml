@@ -1,0 +1,8 @@
+site_name: "Customer-api"
+site_description: "Customer Manager API"
+
+nav:
+  - Introduction: index.md
+
+plugins:
+  - techdocs-core

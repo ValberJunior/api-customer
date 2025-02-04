@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: customer-api
+  description: Customer Manager API
+spec:
+  targets:
+    - ./.platform/*.yaml
