@@ -54,21 +54,21 @@ The **Customer Management API** is a RESTful service built with Fastify and Pris
 ## API Endpoints
 
 ### Health Check
-- **GET** `/health-check`
+- **GET** `/health`
   - **Response:** `{ "status": "🟢 ok", "timestamp": "2024-02-03T12:34:56.789Z" }`
 
 ### Customers
-- **POST** `/customer`
+- **POST** `/customers`
   - Create a new customer.
   - **Body:** `{ "name": "John Doe", "email": "john@example.com" }`
 
 - **GET** `/customers`
   - Retrieve all customers.
 
-- **GET** `/customer/{customerId}`
+- **GET** `/customers/{customerId}`
   - Get details of a specific customer by ID.
 
-- **PATCH** `/customer`
+- **PATCH** `/customers`
   - Update customer information.
   - **Body:** `{ "id": "123", "name": "Jane Doe", "email": "jane@example.com" }`
 
@@ -82,7 +82,7 @@ model Customer {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   email      String
-  status     Boolean
+  status     Boolean? @default(true)
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
