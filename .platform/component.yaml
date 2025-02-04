@@ -6,6 +6,9 @@ metadata:
   annotations:
     github.com/project-slug: veecode-homolog/customer-api
     backstage.io/techdocs-ref: dir:.
+    kong-manager/service-name: customer-api.customer-api-service.8080
+    kong-manager/instance: kong-poc
+    kong-manager/spec: openapi-swagger.yaml
 spec:
   type: devops
   lifecycle: experimental
