@@ -6,6 +6,22 @@ info:
 servers:
   - url: https://customer.cluster-k8s-playrole.vkpr.platform.vee.codes
 paths:
+  /health:
+    get:
+      summary: Health Check
+      responses:
+        '200':
+          description: API is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
   /customers:
     post:
       summary: Create a new customer
