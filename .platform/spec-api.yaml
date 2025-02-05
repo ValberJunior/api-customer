@@ -44,7 +44,7 @@ spec:
           requestBody:
             required: true
             content:
-              multipart/form-data:
+              application/json:
                 schema:
                   type: object
                   properties:
@@ -180,23 +180,3 @@ spec:
               type: string
               format: date-time
               nullable: true
-          schemas:
-            Customer:
-              type: object
-              properties:
-                id:
-                  type: string
-                name:
-                  type: string
-                email:
-                  type: string
-                status:
-                  type: boolean
-                created_at:
-                  type: string
-                  format: date-time
-                  nullable: true
-                updated_at:
-                  type: string
-                  format: date-time
-                  nullable: true
