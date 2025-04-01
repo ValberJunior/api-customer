@@ -27,7 +27,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
   /**
    *  Create a new Customer
    */
-  fastify.post("/customers",{
+  fastify.post("/",{
    schema:{
     body: CreateCustomerRequest,
     response:{
@@ -40,7 +40,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
   /**
    * Get Customers List
    */
-  fastify.get("/customers", {
+  fastify.get("/", {
     schema:{
       response:{
         200: CustomersListResponse,
@@ -52,7 +52,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
   /**
    * Get Customer by ID
    */
-  fastify.get("/customers/:customerId",{
+  fastify.get("/:customerId",{
     schema: {
       params: GetCustomerByIdRequest,
       response:{
@@ -65,7 +65,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
   /**
    * Delete Customer
    */
-  fastify.delete("/customers/:customerId", {
+  fastify.delete("/:customerId", {
     schema: {
       params: GetCustomerByIdRequest,
       response:{
@@ -78,7 +78,7 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
  /**
   * Update Customer
   */
-  fastify.patch("/customers/:customerId", {
+  fastify.patch("/:customerId", {
     schema: {
       params: GetCustomerByIdRequest,
       body: UpdateCustomerRequest,
