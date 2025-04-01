@@ -10,37 +10,29 @@ import {
 } from "fastify-type-provider-zod";
 import formBody from '@fastify/formbody';
 
-const APP_PORT = process.env.APP_PORT || "3000";
-const APP_HOST = process.env.APP_HOST || "localhost"
-
-const app = Fastify({logger:true});
+const app = Fastify({ logger: true });
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
 app.register(swagger, {
-    openapi: {
-      info: {
-        title: "Customer API",
-        description: "Customer Manager API",
-        version: "1.0.0"
-      }
-    },
-    transform: jsonSchemaTransform
-  });
-  
-  app.register(swaggerUI, {
-    routePrefix: "/docs",
-  });
-  app.register(formBody);
+  openapi: {
+    info: {
+      title: "Customer API",
+      description: "Customer Manager API",
+      version: "1.0.0"
+    }
+  },
+  transform: jsonSchemaTransform
+});
 
-  app.register(cors);
-  app.register(routes);
+app.register(swaggerUI, { routePrefix: "/docs" });
+app.register(formBody);
+app.register(cors);
+app.register(routes);
 
-app.listen({ host: APP_HOST, port: parseInt(APP_PORT, 10) }, (err, address) => {
-  if (err) {
-    console.error(err)
-    process.exit(1)
-  }
-  console.log(`Server listening at ${address}`)
-})
+// Exportação para Vercel Serverless
+export default async (req: any, res: any) => {
+  await app.ready();
+  app.server.emit('request', req, res);
+};
