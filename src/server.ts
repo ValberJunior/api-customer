@@ -10,6 +10,9 @@ import {
 } from "fastify-type-provider-zod";
 import formBody from '@fastify/formbody';
 
+const APP_PORT = process.env.PORT || "4000";
+const APP_HOST = process.env.HOST || "localhost"
+
 const app = Fastify({ logger: true });
 
 app.setValidatorCompiler(validatorCompiler);
@@ -31,8 +34,10 @@ app.register(formBody);
 app.register(cors);
 app.register(routes);
 
-// Exportação para Vercel Serverless
-export default async (req: any, res: any) => {
-  await app.ready();
-  app.server.emit('request', req, res);
-};
+app.listen({ host: APP_HOST, port: parseInt(APP_PORT, 10) }, (err, address) => {
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+  console.log(`Server listening at ${address}`)
+})
