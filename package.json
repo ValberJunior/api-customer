@@ -1,5 +1,5 @@
 {
-  "name": "consumers-api",
+  "name": "api-customer",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
