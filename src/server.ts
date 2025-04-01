@@ -10,7 +10,7 @@ import {
 } from "fastify-type-provider-zod";
 import formBody from '@fastify/formbody';
 
-const APP_PORT = process.env.APP_PORT || "3333";
+const APP_PORT = process.env.APP_PORT || "3000";
 const APP_HOST = process.env.APP_HOST || "localhost"
 
 const app = Fastify({logger:true});
