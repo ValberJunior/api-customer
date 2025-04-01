@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { CustomerApi } from "../api/customerApi";
+import { CustomerApi } from "../api";
 import { 
   CreateCustomerRequest, 
   UpdateCustomerRequest, 
