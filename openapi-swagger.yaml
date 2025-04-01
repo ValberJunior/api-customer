@@ -4,7 +4,7 @@ info:
   description: API for managing customers
   version: 1.0.0
 servers:
-  - url: https://customer.cluster-k8s-playrole.vkpr.platform.vee.codes
+  - url: https://api-customer-8izo.onrender.com
 paths:
   /health:
     get:
