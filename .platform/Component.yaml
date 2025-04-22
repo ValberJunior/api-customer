@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "api-customer"
+  description: "Api Customer example."
+  annotations:
+    github.com/project-slug: ValberJunior/api-customer
+    backstage.io/techdocs-ref: dir:.
+    sonarqube.org/project-key: valberjunior/ValberJunior_api-customer
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "group:default/admin"
