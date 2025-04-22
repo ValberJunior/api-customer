@@ -6,7 +6,7 @@ metadata:
   annotations:
     github.com/project-slug: ValberJunior/api-customer
     backstage.io/techdocs-ref: dir:.
-    sonarqube.org/project-key: valberjunior/ValberJunior_api-customer
+    sonarqube.org/project-key: ValberJunior_api-customer
 spec:
   type: service
   lifecycle: experimental
