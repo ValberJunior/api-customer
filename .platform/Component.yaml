@@ -8,7 +8,7 @@ metadata:
     backstage.io/techdocs-ref: dir:.
     sonarqube.org/project-key: ValberJunior_api-customer
     vault.io/secrets-path: teste
-    vault.io/secrets-engine: devportal
+    vault.io/secrets-engine: cubbyhole
 spec:
   type: service
   lifecycle: experimental
