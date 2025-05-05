@@ -7,8 +7,8 @@ metadata:
     github.com/project-slug: ValberJunior/api-customer
     backstage.io/techdocs-ref: dir:.
     sonarqube.org/project-key: ValberJunior_api-customer
-    vault.io/secrets-path: api-customer
-    vault.io/secrets-engine: cubbyhole
+    vault.io/secrets-path: bu-platform-snk
+    vault.io/secrets-engine: bu-platform-snk
 spec:
   type: service
   lifecycle: experimental
